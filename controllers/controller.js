@@ -5,9 +5,9 @@ const path = require("path");
 const request = require("request");
 const cheerio = require("cheerio");
 
-const Comment = require("../models/comments.js");
+const Comment = require("../models/Comments.js");
 
-const Article = require('../models/article.js');
+const Article = require('../models/Article.js');
 
 router.get("/", (req, res) => {
     res.redirect("/articles");
@@ -107,7 +107,7 @@ router.get("/readArticle/:id", function (req, res) {
                 request(link, function (error, response, html) {
                     var $ = cheerio.load(html);
 
-                    $(".l-col__main").each(function (i, element) {
+                    $("c-h2-m-posts-item-title").each(function (i, element) {
                         hbsObj.body = $(this)
                             .children(".c-entry-content")
                             .children("p")

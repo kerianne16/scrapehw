@@ -11,7 +11,7 @@ app.engine("handlebars", exphbs({ defaultlayout: "main" }) //handlebars
 );
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://localhost/scrapehw"); // mongo connection
+mongoose.connect("mongodb://localhost/scrapehw", { useNewUrlParser: true }); // mongo connection
 const db = mongoose.connection;
 
 db.on("error", console.log.bind(console, "Connection error:"));
@@ -33,3 +33,4 @@ app.use(
 
 app.use(express.static(process.cwd() + "/public"));
 
+//<link rel="shortcut icon" href="about:blank"></link>
