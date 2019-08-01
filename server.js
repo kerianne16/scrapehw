@@ -1,25 +1,25 @@
 // requiring all the packages we will be using
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const logger = require("morgan");
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+var logger = require("morgan");
 
-const express = require("express");
-const app = express(); // start express
+var express = require("express");
+var app = express(); // start express
 
-const exphbs = require("express-handlebars");
+var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultlayout: "main" }) //handlebars
 );
 app.set("view engine", "handlebars");
 
 mongoose.connect("mongodb://localhost/scrapehw", { useNewUrlParser: true }); // mongo connection
-const db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on("error", console.log.bind(console, "Connection error:"));
 db.once("open", () => {
     console.log("Connected to Mongoose!")
 });
 
-const port = process.env.PORT || 3000; //setting up port
+var port = process.env.PORT || 3000; //setting up port
 app.listen(port, () => {
     console.log(`Listening on PORT ${port}`);
 });
@@ -34,3 +34,5 @@ app.use(
 app.use(express.static(process.cwd() + "/public"));
 
 //<link rel="shortcut icon" href="about:blank"></link>
+
+

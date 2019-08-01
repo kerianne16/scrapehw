@@ -1,25 +1,25 @@
-const express = require("express");
-const router = express.Router();
-const path = require("path");
+var express = require("express");
+var router = express.Router();
+var path = require("path");
 
-const request = require("request");
-const cheerio = require("cheerio");
+var request = require("request");
+var cheerio = require("cheerio");
 
-const Comment = require("../models/Comments.js");
+var Comment = require("../models/Comments.js");
 
-const Article = require('../models/Article.js');
+var Article = require('../models/Article.js');
 
 router.get("/", (req, res) => {
-    res.redirect("/articles");
+    res.redirect("../nav/article.handlebars");
 });
 
 router.get("/scrape", function (req, res) {
-    request("https://intothegloss.com/", function (err, res, html) {
-        let $ = cheerio.load(html);
-        let titlesArray = [];
+    request("https://buzzfeednews.com/", function (err, res, html) {
+        var $ = cheerio.load(html);
+        var titlesArray = [];
 
-        $("m-posts-item-intro").each(function (i, element) {
-            let result = {};
+        $(".newsblock-story-card").each(function (i, element) {
+            var result = {};
 
             result.title = $(this)
                 .children("a")
@@ -34,7 +34,7 @@ router.get("/scrape", function (req, res) {
 
                     Article.count({ title: result.title }, function (err, test) {
                         if (test === 0) {
-                            let entry = new Article(result);
+                            var entry = new Article(result);
 
                             entry.save(function (err, doc) {
                                 if (err) {
@@ -90,8 +90,8 @@ router.get("/clearAll", function (req, res) {
 });
 
 router.get("/readArticle/:id", function (req, res) {
-    let articleId = req.params.id;
-    let hbsObj = {
+    var articleId = req.params.id;
+    var hbsObj = {
         article: [],
         body: []
     };
@@ -103,11 +103,11 @@ router.get("/readArticle/:id", function (req, res) {
                 console.log(`Error:${err}`);
             } else {
                 hbsObj.article = doc;
-                let link = doc.link;
+                var link = doc.link;
                 request(link, function (error, response, html) {
                     var $ = cheerio.load(html);
 
-                    $("c-h2-m-posts-item-title").each(function (i, element) {
+                    $(".newsblock-story-card").each(function (i, element) {
                         hbsObj.body = $(this)
                             .children(".c-entry-content")
                             .children("p")
