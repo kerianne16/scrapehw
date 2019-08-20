@@ -2,35 +2,31 @@
 <html lang="en">
 
 <head>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-    {{!-- Materialize Icons --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    {{!-- Google Font --}}
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <!-- tab icon -->
+    <meta charset="UTF-8">
 
-    <link rel="shortcut icon" href="">
+    <title>Scraper</title>
 
-    <title>Into the Gloss Scraper</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="/app.js"></script>
+
+    <style>
+        body {
+            background: rgb(252, 230, 230);
+        }
+    </style>
+
 </head>
 
 <body>
-
-    {{nav/navbar}}
-
-    <main>
-        <div class="container">
-            {{{ body }}}
-        </div>
-    </main>
-
-    {{footer}}
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    {{{body}}}
 </body>
-<html>
+
+</html>

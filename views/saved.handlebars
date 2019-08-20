@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="/savedArticles">Saved</a>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid text-center"
+    style="background-color: lightpink; color:white; height:400px; padding-top:125px;">
+    <h1 style="font-size: 4.5rem;">Saved BuzzFeed</h1>
+    <a class="btn btn-primary btn-lg" style="background-color:black; color:white; border:none;" id="delete"
+        role="button">Clear All</a>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 articles text-center">
+            {{#each articles}}
+            <div class="card" style="margin:30px;">
+
+                <div class="card-body">
+                    <img src="./images/saved.png" style="height:60px; margin-bottom:10px;">
+                    <a href={{this.link}}>
+                        <h4 class="card-title" style="color:black;">{{title}}</h4>
+                    </a>
+                    <p class="card-text" style="color:grey;">{{summary}}</p>
+
+                    <a href="#" class="btn btn-primary" style="background-color: #EB352C; border:none;"
+                        id="removeFromSave" value={{_id}}>Delete</a>
+
+                    <button type="button" class="btn btn-primary" style="background-color: #EB352C; border:none;"
+                        data-toggle="modal" data-target="#notesModal" id="notes" value={{_id}}>Notes</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+
+                </ul>
+                <textarea class="form-control" id="newNote" rows="3" placeholder="New Note"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveNote">Save Note</button>
+            </div>
+        </div>
+    </div>
+</div>

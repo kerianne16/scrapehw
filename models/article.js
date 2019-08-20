@@ -1,23 +1,33 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
-
-const ArticleSchema = new Schema({
-
-    tite: {
-        String,
-        required: true,
+var ArticleSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    summary: {
+        type: String,
+        required: true
     },
     link: {
         type: String,
-        required: true,
+        required: true
     },
-    comment: [{
+    saved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    note: [{
         type: Schema.Types.ObjectId,
-        ref: "Comment",
+        ref: "Note"
     }]
 });
 
-const Article = mongoose.model("Article", ArticleSchema);
+
+var Article = mongoose.model("Article", ArticleSchema);
+
 
 module.exports = Article;
